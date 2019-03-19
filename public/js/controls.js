@@ -1,18 +1,33 @@
 const socket = io('https://testleonid.herokuapp.com/');
-//const socket = io('http://localhost:8080');
-
-socket.on("Chao", function(data) {
-    alert(data.language);
-});
+//const socket = io('http://localhost:3000');
+const peer = new Peer();
 
 /////////////////////////////////////////////////////////////////////////
-
-const peer = new Peer();
 
 openStream()
 .then(stream => {
     playStream('localStream', stream);
 });
+
+//////////////////////////////////////////////////////////////////////////////
+
+socket.on("Chao", function(data) {
+    //alert(data.language);
+});
+
+socket.on("IDVideo_Of_Friend", function(data) {
+    openStream()
+    .then(stream => {
+        let call = peer.call(data.IDVideo, stream);
+        call.on('stream', remoteStream => {
+            playStream('remoteStream', remoteStream);
+        })
+    });
+});
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+peer.on('open', id => socket.emit('IDVideo', { IDVideo : id }));
 
 peer.on('call', call => {
     openStream()
@@ -24,6 +39,8 @@ peer.on('call', call => {
     })
     .catch(err => alert(err));
 })
+
+/////////////////////////////////////////////////////////////////////////////////
 
 function openStream() {
     const config = {
