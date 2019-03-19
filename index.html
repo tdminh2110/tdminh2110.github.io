@@ -1,0 +1,21 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= pageTitle %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/peer.min.js"></script>
+    <script src="public/js/socket.io.js"></script>
+</head>
+<body>
+    <h3 id="my-peer">My ID:</h3>
+    <video id="localStream" width="400"></video>
+    <br /><br />
+    <video id="remoteStream" width="400"></video>
+    <br /><br />
+    <button id="btnCall">Call</button>
+</body>
+<script src="public/js/controls.js"></script>
+</html>
