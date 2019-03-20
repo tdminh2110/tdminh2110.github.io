@@ -1,6 +1,18 @@
 const socket = io('https://testleonid.herokuapp.com/');
 //const socket = io('http://localhost:3000');
-const peer = new Peer();
+
+const peer = new Peer({
+    config: {'iceServers': [{   url: 'stun:eu-turn1.xirsys.com', 
+        username : '3be6db1a-495e-11e9-8859-8741069e5961',
+        credential: '3be6db88-495e-11e9-aef3-1b4a17b9ce1b'
+    },
+    {   url: 'turn:eu-turn1.xirsys.com:3478?transport=udp', 
+        username : '3be6db1a-495e-11e9-8859-8741069e5961',
+        credential: '3be6db88-495e-11e9-aef3-1b4a17b9ce1b' }
+    ]} 
+  });
+
+//const peer = new Peer();
 
 /////////////////////////////////////////////////////////////////////////
 
